@@ -4,6 +4,9 @@
 users_index:
   path: /users
   controller: App\Infrastructure\Users\Controllers\UserController::index
+app_dashboard:
+  path: /
+  controller: App\Infrastructure\Dashboard\Controllers\DashboardController::index
 app_login:
   path: /login
   controller: App\Infrastructure\Users\Controllers\SecurityController::login
