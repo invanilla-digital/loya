@@ -4,3 +4,9 @@
 users_index:
   path: /users
   controller: App\Infrastructure\Users\Controllers\UserController::index
+app_login:
+  path: /login
+  controller: App\Infrastructure\Users\Controllers\SecurityController::login
+app_logout:
+  path: /logout
+  controller: App\Infrastructure\Users\Controllers\SecurityController::logout
