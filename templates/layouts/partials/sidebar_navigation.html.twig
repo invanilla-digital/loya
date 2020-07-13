@@ -1,0 +1,18 @@
+{% for section in sections %}
+
+    {{ section.title }}
+{% endfor %}
+
+
+<aside class="menu is-hidden-mobile">
+    {% for section in sections %}
+        <p class="menu-label">
+            {{ section.title }}
+        </p>
+        <ul class="menu-list">
+            {% for menu_item in section.items %}
+                <li><a href="{{ menu_item.url }}" class="is-active">{{ menu_item.title }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+</aside>
