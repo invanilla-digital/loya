@@ -9,19 +9,19 @@ return [
         'items' => [
             [
                 'title' => 'Dashboard',
-                'url' => '/'
+                'url' => 'app_dashboard'
             ],
             [
                 'title' => 'Campaigns',
-                'url' => '/'
+                'url' => 'campaigns_index'
             ],
             [
                 'title' => 'Customers',
-                'url' => '/'
+                'url' => 'app_dashboard'
             ],
             [
                 'title' => 'Settings',
-                'url' => '/'
+                'url' => 'app_dashboard'
             ],
         ]
     ]

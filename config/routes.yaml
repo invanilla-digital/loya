@@ -1,9 +1,6 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
-users_index:
-  path: /users
-  controller: App\Infrastructure\Users\Controllers\UserController::index
 app_dashboard:
   path: /
   controller: App\Infrastructure\Dashboard\Controllers\DashboardController::index
@@ -13,3 +10,12 @@ app_login:
 app_logout:
   path: /logout
   controller: App\Infrastructure\Users\Controllers\SecurityController::logout
+
+users_index:
+  path: /users
+  controller: App\Infrastructure\Users\Controllers\UserController::index
+
+campaigns_index:
+  path: /campaigns
+  controller: App\Infrastructure\Dashboard\Controllers\DashboardController::index
+

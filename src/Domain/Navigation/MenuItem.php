@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Navigation;
 
-final class MenuItem implements RoleBasedAccessibilityInterface
+final class MenuItem implements RoleBasedAccessibilityInterface, UrlAwareInterface
 {
     private string $title;
     private string $url;

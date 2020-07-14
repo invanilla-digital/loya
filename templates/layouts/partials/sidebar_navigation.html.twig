@@ -7,7 +7,7 @@
             <ul class="menu-list">
                 {% for menu_item in section.items %}
                     {% if navigation_service.isItemAccessible(menu_item) %}
-                        <li><a href="{{ menu_item.url }}" class="is-active">{{ menu_item.title }}</a></li>
+                        <li><a href="{{ path(menu_item.url) }}" {% if navigation_service.isItemActive(menu_item) %}class="is-active"{% endif %}>{{ menu_item.title }}</a></li>
                     {% endif %}
                 {% endfor %}
             </ul>
