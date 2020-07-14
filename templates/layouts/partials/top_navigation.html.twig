@@ -1,0 +1,11 @@
+{% for section in sections %}
+    {% if navigation_service.isItemAccessible(section) %}
+        {% for menu_item in section.items %}
+            {% if navigation_service.isItemAccessible(menu_item) %}
+                <a class="navbar-item" href="{{ menu_item.url }}">
+                    {{ menu_item.title }}
+                </a>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endfor %}

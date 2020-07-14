@@ -6,6 +6,7 @@ namespace App\Infrastructure\Navigation\Services;
 
 use App\Application\Navigation\NavigationFactoryInterface;
 use App\Application\Navigation\NavigationServiceInterface;
+use App\Domain\Navigation\NavigationSection;
 use App\Domain\Navigation\RoleBasedAccessibilityInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
 use Symfony\Component\Security\Core\Security;
@@ -28,9 +29,9 @@ class NavigationService implements NavigationServiceInterface
         $this->security = $security;
     }
 
-    public function getMenuSections(): array
+    public function getSidebarSections(): array
     {
-        return $this->factory->make(require __DIR__ . '/../../../../config/navigation.php');
+        return $this->factory->make(require __DIR__ . '/../../../../config/sidebar_navigation.php');
     }
 
     public function isItemAccessible(RoleBasedAccessibilityInterface $item): bool
@@ -52,5 +53,10 @@ class NavigationService implements NavigationServiceInterface
         }
 
         return false;
+    }
+
+    public function getTopNavigationSections(): array
+    {
+        return $this->factory->make(require __DIR__ . '/../../../../config/top_navigation.php');
     }
 }

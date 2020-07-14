@@ -11,5 +11,10 @@ interface NavigationServiceInterface
     /**
      * @return NavigationSection[]
      */
-    public function getMenuSections(): array;
+    public function getSidebarSections(): array;
+
+    /**
+     * @return NavigationSection[]
+     */
+    public function getTopNavigationSections(): array;
 }

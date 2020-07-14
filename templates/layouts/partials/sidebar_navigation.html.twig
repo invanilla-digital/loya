@@ -1,12 +1,16 @@
 <aside class="menu is-hidden-mobile">
     {% for section in sections %}
-        <p class="menu-label">
-            {{ section.title }}
-        </p>
-        <ul class="menu-list">
-            {% for menu_item in section.items %}
-                <li><a href="{{ menu_item.url }}" class="is-active">{{ menu_item.title }}</a></li>
-            {% endfor %}
-        </ul>
+        {% if navigation_service.isItemAccessible(section) %}
+            <p class="menu-label">
+                {{ section.title }}
+            </p>
+            <ul class="menu-list">
+                {% for menu_item in section.items %}
+                    {% if navigation_service.isItemAccessible(menu_item) %}
+                        <li><a href="{{ menu_item.url }}" class="is-active">{{ menu_item.title }}</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        {% endif %}
     {% endfor %}
 </aside>
