@@ -9,12 +9,14 @@ use App\Domain\Users\User;
 use App\Domain\Users\UserRepositoryInterface;
 use App\Infrastructure\Users\Forms\UserCreateForm;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * @IsGranted("ROLE_USER")
+ */
 class UserController extends AbstractController
 {
     protected PaginatorInterface $paginator;
