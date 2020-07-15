@@ -20,47 +20,49 @@
                     {{ user.username }}
                 </p>
                 <div class="panel-block">
-                    <table class="table">
-                        <tr>
-                            <th>System ID</th>
-                            <td>{{ user.id }}</td>
-                        </tr>
-                        <tr>
-                            <th>Username</th>
-                            <td>{{ user.username }}</td>
-                        </tr>
-                        <tr>
-                            <th>Roles</th>
-                            <td>
-                                <ul>
-                                    {% for role in user.roles %}
-                                        <li>{{ role }}</li>
-                                    {% endfor %}
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Actions</th>
-                            <td>
-                                <a href="{{ path('users_edit', { userId: user.id}) }}" class="button is-secondary is-small">
-                                    Edit
-                                </a>
-                                {% if app.user.username is not same as(user.username) %}
-                                    <button
-                                            data-post-button="{{ path('users_delete', { userId: user.id }) }}"
-                                            data-post-button-confirmation="Do You really want to delete this User?"
-                                            class="button is-small is-danger"
-                                    >
-                                        Delete
-                                    </button>
-                                {% else %}
-                                    <button disabled class="button is-danger is-small">
-                                        Delete
-                                    </button>
-                                {% endif %}
-                            </td>
-                        </tr>
-                    </table>
+                    <div class="column">
+                        <table class="table">
+                            <tr>
+                                <th>System ID</th>
+                                <td>{{ user.id }}</td>
+                            </tr>
+                            <tr>
+                                <th>Username</th>
+                                <td>{{ user.username }}</td>
+                            </tr>
+                            <tr>
+                                <th>Roles</th>
+                                <td>
+                                    <ul>
+                                        {% for role in user.roles %}
+                                            <li>{{ role }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Actions</th>
+                                <td>
+                                    <a href="{{ path('users_edit', { userId: user.id}) }}" class="button is-secondary is-small">
+                                        Edit
+                                    </a>
+                                    {% if app.user.username is not same as(user.username) %}
+                                        <button
+                                                data-post-button="{{ path('users_delete', { userId: user.id }) }}"
+                                                data-post-button-confirmation="Do You really want to delete this User?"
+                                                class="button is-small is-danger"
+                                        >
+                                            Delete
+                                        </button>
+                                    {% else %}
+                                        <button disabled class="button is-danger is-small">
+                                            Delete
+                                        </button>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </article>
         </div>

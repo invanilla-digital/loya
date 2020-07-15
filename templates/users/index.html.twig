@@ -10,53 +10,63 @@
 {% endblock %}
 
 {% block body %}
-    <table class="table is-hoverable is-fullwidth">
-        <thead>
-        <tr>
-            <th {% if pagination.isSorted('user.username') %} class="sorted"{% endif %}>
-                {{ knp_pagination_sortable(pagination, 'Username', 'user.username') }}
-            </th>
-            <th>
-                Roles
-            </th>
-            <th>
-                Actions
-            </th>
-        </tr>
-        </thead>
+    <div class="columns">
+        <div class="container">
+            <article class="panel has-background-white">
+                <p class="panel-heading">
+                    Users list
+                </p>
+                <div class="panel-block">
+                    <table class="table is-hoverable is-fullwidth">
+                        <thead>
+                        <tr>
+                            <th {% if pagination.isSorted('user.username') %} class="sorted"{% endif %}>
+                                {{ knp_pagination_sortable(pagination, 'Username', 'user.username') }}
+                            </th>
+                            <th>
+                                Roles
+                            </th>
+                            <th>
+                                Actions
+                            </th>
+                        </tr>
+                        </thead>
 
-        {% for user in pagination %}
-            <tr {% if loop.index is odd %}class="color"{% endif %}>
-                <td> {{ user.username }}</td>
-                <td> {{ user.roles | join(', ') }}</td>
-                <td>
-                    <a href="{{ path('users_view', { userId: user.id}) }}" class="button is-small">
-                        View
-                    </a>
-                    <a href="{{ path('users_edit', { userId: user.id}) }}" class="button is-secondary is-small">
-                        Edit
-                    </a>
-                    {% if app.user.username is not same as(user.username) %}
-                        <button
-                                data-post-button="{{ path('users_delete', { userId: user.id }) }}"
-                                data-post-button-confirmation="Do You really want to delete this User?"
-                                class="button is-small is-danger"
-                        >
-                            Delete
-                        </button>
-                    {% else %}
-                        <button disabled class="button is-danger is-small">
-                            Delete
-                        </button>
-                    {% endif %}
-                </td>
-            </tr>
-        {% endfor %}
-    </table>
+                        {% for user in pagination %}
+                            <tr {% if loop.index is odd %}class="color"{% endif %}>
+                                <td> {{ user.username }}</td>
+                                <td> {{ user.roles | join(', ') }}</td>
+                                <td>
+                                    <a href="{{ path('users_view', { userId: user.id}) }}" class="button is-small">
+                                        View
+                                    </a>
+                                    <a href="{{ path('users_edit', { userId: user.id}) }}"
+                                       class="button is-secondary is-small">
+                                        Edit
+                                    </a>
+                                    {% if app.user.username is not same as(user.username) %}
+                                        <button
+                                                data-post-button="{{ path('users_delete', { userId: user.id }) }}"
+                                                data-post-button-confirmation="Do You really want to delete this User?"
+                                                class="button is-small is-danger"
+                                        >
+                                            Delete
+                                        </button>
+                                    {% else %}
+                                        <button disabled class="button is-danger is-small">
+                                            Delete
+                                        </button>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
 
-
-
-    <div class="navigation">
-        {{ knp_pagination_render(pagination) }}
+                    <div class="navigation">
+                        {{ knp_pagination_render(pagination) }}
+                    </div>
+                </div>
+            </article>
+        </div>
     </div>
 {% endblock %}

@@ -16,7 +16,20 @@
 {% endblock %}
 
 {% block body %}
-    {{ form(form) }}
+    <div class="columns">
+        <div class="container">
+            <article class="panel has-background-white">
+                <p class="panel-heading">
+                    {{ user.username }}
+                </p>
+                <div class="panel-block">
+                    <div class="column">
+                        {{ form(form) }}
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
 {% endblock %}
 
 
