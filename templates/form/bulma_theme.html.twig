@@ -14,10 +14,9 @@
 
 {% block form_errors -%}
     {%- if errors|length > 0 -%}
-        <span class="{% if form is not rootform %}invalid-feedback{% else %}help is-danger{% endif %} d-block">
+        <span class="{% if form is not rootform %}help is-danger invalid-feedback{% else %}help is-danger{% endif %} d-block">
             {%- for error in errors -%}
-                <span class="d-block">
-                    <span class="form-error-icon badge badge-danger text-uppercase">{{ 'Error'|trans({}, 'validators') }}</span>
+                <span class="block">
                     <span class="form-error-message">{{ error.message }}</span>
                 </span>
             {%- endfor -%}
