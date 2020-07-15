@@ -17,6 +17,12 @@ users_index:
 users_create:
   path: /users/create
   controller: App\Infrastructure\Users\Controllers\UserController::create
+users_view:
+  path: /users/{userId}
+  controller: App\Infrastructure\Users\Controllers\UserController::view
+users_edit:
+  path: /users/{userId}/edit
+  controller: App\Infrastructure\Users\Controllers\UserController::edit
 users_delete:
   path: /users/{userId}/delete
   controller: App\Infrastructure\Users\Controllers\UserController::delete

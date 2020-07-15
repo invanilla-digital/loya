@@ -1,0 +1,22 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title %}Edit User{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>
+        <a href="{{ path('users_index') }}">Users</a>
+    </li>
+    <li>
+        <a href="{{ path('users_view', { userId: user.id}) }}">{{ user.username }}</a>
+    </li>
+    <li class="is-active">
+        <a href="{{ path('users_edit', { userId: user.id}) }}" aria-current="page">Edit</a>
+    </li>
+{% endblock %}
+
+{% block body %}
+    {{ form(form) }}
+{% endblock %}
+
+

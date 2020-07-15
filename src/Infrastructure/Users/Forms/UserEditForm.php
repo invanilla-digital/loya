@@ -12,7 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class UserCreateForm extends AbstractType
+class UserEditForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -26,30 +26,11 @@ class UserCreateForm extends AbstractType
                 ]
             )
             ->add(
-                'plainPassword',
-                RepeatedType::class,
-                array(
-                    'type' => PasswordType::class,
-                    'required' => true,
-                    'first_options' => ['label' => 'Password', 'attr' => ['class' => 'input'],],
-                    'second_options' => ['label' => 'Repeat Password', 'attr' => ['class' => 'input'],],
-                )
-            )
-            ->add(
-                'create',
+                'edit',
                 SubmitType::class,
                 [
                     'attr' => ['class' => 'button is-primary'],
                 ]
             );
-    }
-
-    public function configureOptions(OptionsResolver $resolver)
-    {
-        $resolver->setDefaults(
-            [
-                'validation_groups' => ['registration']
-            ]
-        );
     }
 }

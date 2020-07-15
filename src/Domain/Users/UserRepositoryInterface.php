@@ -13,4 +13,6 @@ interface UserRepositoryInterface
     public function getAllUsersQuery();
 
     public function delete(User $user): void;
+
+    public function update(User $user): void;
 }

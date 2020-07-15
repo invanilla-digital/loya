@@ -30,8 +30,11 @@
                 <td> {{ user.username }}</td>
                 <td> {{ user.roles | join(', ') }}</td>
                 <td>
-                    <a href="#" class="button is-small">
+                    <a href="{{ path('users_view', { userId: user.id}) }}" class="button is-small">
                         View
+                    </a>
+                    <a href="{{ path('users_edit', { userId: user.id}) }}" class="button is-secondary is-small">
+                        Edit
                     </a>
                     {% if app.user.username is not same as(user.username) %}
                         <button

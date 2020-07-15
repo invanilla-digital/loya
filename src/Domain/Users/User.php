@@ -38,9 +38,9 @@ class User implements UserInterface
 
     /**
      * @var string|null
-     * @Assert\NotCompromisedPassword()
-     * @Assert\NotBlank()
-     * @Assert\Length(min="6")
+     * @Assert\NotCompromisedPassword(groups={"registration"})
+     * @Assert\NotBlank(groups={"registration"})
+     * @Assert\Length(groups={"registration"}, min="6")
      */
     private ?string $plainPassword = null;
 

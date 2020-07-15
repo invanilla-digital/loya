@@ -8,6 +8,7 @@ use App\Application\Users\UserRegistrationServiceInterface;
 use App\Domain\Users\User;
 use App\Domain\Users\UserRepositoryInterface;
 use App\Infrastructure\Users\Forms\UserCreateForm;
+use App\Infrastructure\Users\Forms\UserEditForm;
 use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -70,6 +71,55 @@ class UserController extends AbstractController
         return $this->render(
             'users/create.html.twig',
             [
+                'form' => $form->createView()
+            ]
+        );
+    }
+
+    public function view(int $userId): Response
+    {
+        $user = $this->users->findById($userId);
+
+        if (!$user) {
+            throw $this->createNotFoundException('This user does not exist');
+        }
+
+        return $this->render(
+            'users/view.html.twig',
+            [
+                'user' => $user
+            ]
+        );
+    }
+
+    public function edit(int $userId, Request $request): Response
+    {
+        $user = $this->users->findById($userId);
+
+        if (!$user) {
+            throw $this->createNotFoundException('This user does not exist');
+        }
+
+        $form = $this->createForm(UserEditForm::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->users->update($form->getData());
+
+            $this->addFlash('success', 'User edited successfully');
+
+            return $this->redirectToRoute(
+                'users_view',
+                [
+                    'userId' => $userId
+                ]
+            );
+        }
+
+        return $this->render(
+            'users/edit.html.twig',
+            [
+                'user' => $user,
                 'form' => $form->createView()
             ]
         );
