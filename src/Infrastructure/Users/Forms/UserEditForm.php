@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Infrastructure\Users\Forms;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -23,6 +24,19 @@ class UserEditForm extends AbstractType
                 [
                     'required' => true,
                     'attr' => ['class' => 'input'],
+                ]
+            )
+            ->add(
+                'roles',
+                ChoiceType::class,
+                [
+                    'choices' => [
+                        'ROLE_CAMPAIGN_ADMIN' => 'ROLE_CAMPAIGN_ADMIN',
+                        'ROLE_USER_ADMIN' => 'ROLE_USER_ADMIN',
+                        'ROLE_SUPERADMIN' => 'ROLE_SUPERADMIN'
+                    ],
+                    'expanded' => true,
+                    'multiple' => true,
                 ]
             )
             ->add(
