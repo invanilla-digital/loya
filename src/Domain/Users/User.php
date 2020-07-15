@@ -2,15 +2,21 @@
 
 namespace App\Domain\Users;
 
+use App\Domain\Common\Traits\CanBeBlamed;
+use App\Domain\Common\Traits\HasTimestamps;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepositoryInterface::class)
+ * @ORM\HasLifecycleCallbacks()
  */
 class User implements UserInterface
 {
+    use HasTimestamps;
+    use CanBeBlamed;
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()

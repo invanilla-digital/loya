@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Common\Traits;
 
+use DateTimeImmutable;
 use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -18,14 +19,14 @@ trait HasTimestamps
     /**
      * @var DateTimeInterface|null
      *
-     * @ORM\Column(type="datetime_immutable", name="created_at")
+     * @ORM\Column(type="datetime_immutable", name="created_at", options={"default": "CURRENT_TIMESTAMP" })
      */
     protected ?DateTimeInterface $createdAt;
 
     /**
      * @var DateTimeInterface|null
      *
-     * @ORM\Column(type="datetime_immutable", name="updated_at")
+     * @ORM\Column(type="datetime_immutable", name="updated_at", nullable=true)
      */
     protected ?DateTimeInterface $updatedAt;
 
@@ -55,9 +56,10 @@ trait HasTimestamps
      */
     public function refreshTimestamps(): void
     {
-        $this->setUpdatedAt(new \DateTime('now'));
-        if ($this->getCreatedAt() === null) {
-            $this->setCreatedAt(new \DateTime('now'));
+        $this->setUpdatedAt(new DateTimeImmutable('now'));
+
+        if (!$this->getCreatedAt()) {
+            $this->setCreatedAt(new DateTimeImmutable('now'));
         }
     }
 }
