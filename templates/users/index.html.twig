@@ -16,12 +16,16 @@
             <th {% if pagination.isSorted('user.username') %} class="sorted"{% endif %}>
                 {{ knp_pagination_sortable(pagination, 'username', 'user.username') }}
             </th>
+            <th>
+                Roles
+            </th>
         </tr>
         </thead>
 
         {% for user in pagination %}
             <tr {% if loop.index is odd %}class="color"{% endif %}>
                 <td> {{ user.username }}</td>
+                <td> {{ user.roles | join(', ') }}</td>
             </tr>
         {% endfor %}
     </table>
