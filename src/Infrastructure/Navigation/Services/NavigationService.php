@@ -7,7 +7,7 @@ namespace App\Infrastructure\Navigation\Services;
 use App\Application\Navigation\NavigationFactoryInterface;
 use App\Application\Navigation\NavigationServiceInterface;
 use App\Domain\Navigation\RoleBasedAccessibilityInterface;
-use App\Domain\Navigation\UrlAwareInterface;
+use App\Domain\Navigation\RouteAwareInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\Security;
@@ -64,7 +64,7 @@ class NavigationService implements NavigationServiceInterface
         return $this->factory->make(require __DIR__ . '/../../../../config/top_navigation.php');
     }
 
-    public function isItemActive(UrlAwareInterface $item): bool
+    public function isItemActive(RouteAwareInterface $item): bool
     {
         $request = $this->requests->getMasterRequest();
 
@@ -72,6 +72,6 @@ class NavigationService implements NavigationServiceInterface
             return false;
         }
 
-        return $request->attributes->get('_route') === $item->getUrl();
+        return $request->attributes->get('_route') === $item->getRoute();
     }
 }

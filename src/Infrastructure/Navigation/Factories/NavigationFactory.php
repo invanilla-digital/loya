@@ -44,7 +44,7 @@ class NavigationFactory implements NavigationFactoryInterface
 
         $item->setTitle($config['title']);
         $item->setRoles($config['roles'] ?? []);
-        $item->setUrl($config['url'] ?? '#');
+        $item->setRoute($config['route'] ?? '#');
         $item->setItems(
             array_map([$this, 'makeItem'], $config['items'] ?? [])
         );

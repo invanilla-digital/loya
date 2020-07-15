@@ -6,7 +6,7 @@ namespace App\Application\Navigation;
 
 use App\Domain\Navigation\NavigationSection;
 use App\Domain\Navigation\RoleBasedAccessibilityInterface;
-use App\Domain\Navigation\UrlAwareInterface;
+use App\Domain\Navigation\RouteAwareInterface;
 
 interface NavigationServiceInterface
 {
@@ -22,5 +22,5 @@ interface NavigationServiceInterface
 
     public function isItemAccessible(RoleBasedAccessibilityInterface $item): bool;
 
-    public function isItemActive(UrlAwareInterface $item): bool;
+    public function isItemActive(RouteAwareInterface $item): bool;
 }

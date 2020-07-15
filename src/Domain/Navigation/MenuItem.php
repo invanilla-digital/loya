@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace App\Domain\Navigation;
 
-final class MenuItem implements RoleBasedAccessibilityInterface, UrlAwareInterface
+final class MenuItem implements RoleBasedAccessibilityInterface, RouteAwareInterface
 {
     private string $title;
-    private string $url;
+    private string $route;
     private array $items;
     private array $roles;
 
-    public function __construct(string $title = '', string $url = '', array $items = [], array $roles = [])
+    public function __construct(string $title = '', string $route = '', array $items = [], array $roles = [])
     {
         $this->title = $title;
-        $this->url = $url;
+        $this->route = $route;
         $this->items = $items;
         $this->roles = $roles;
     }
@@ -31,14 +31,14 @@ final class MenuItem implements RoleBasedAccessibilityInterface, UrlAwareInterfa
         return $this;
     }
 
-    public function getUrl(): string
+    public function getRoute(): string
     {
-        return $this->url;
+        return $this->route;
     }
 
-    public function setUrl(string $url): void
+    public function setRoute(string $route): void
     {
-        $this->url = $url;
+        $this->route = $route;
     }
 
     public function getItems(): array

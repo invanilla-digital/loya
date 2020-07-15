@@ -9,7 +9,7 @@ return [
         'items' => [
             [
                 'title' => 'Dashboard',
-                'url' => 'app_dashboard'
+                'route' => 'app_dashboard'
             ],
         ]
     ],
@@ -21,15 +21,15 @@ return [
         'items' => [
             [
                 'title' => 'All campaigns',
-                'url' => 'campaigns_index'
+                'route' => 'campaigns_index'
             ],
             [
                 'title' => 'Create new',
-                'url' => 'campaigns_index'
+                'route' => 'campaigns_index'
             ],
             [
                 'title' => 'Reports',
-                'url' => 'campaigns_index'
+                'route' => 'campaigns_index'
             ],
         ]
     ]

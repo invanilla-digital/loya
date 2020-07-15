@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Navigation;
 
-interface UrlAwareInterface
+interface RouteAwareInterface
 {
-    public function getUrl(): string;
+    public function getRoute(): string;
 }
