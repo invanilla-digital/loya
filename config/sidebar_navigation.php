@@ -36,7 +36,7 @@ return [
     [
         'title' => 'Users',
         'roles' => [
-            'ROLE_USER_ADMINISTRATOR'
+            'ROLE_USER_ADMIN'
         ],
         'items' => [
             [
