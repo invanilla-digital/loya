@@ -33,7 +33,8 @@ class UserEditForm extends AbstractType
                     'choices' => [
                         'ROLE_CAMPAIGN_ADMIN' => 'ROLE_CAMPAIGN_ADMIN',
                         'ROLE_USER_ADMIN' => 'ROLE_USER_ADMIN',
-                        'ROLE_SUPERADMIN' => 'ROLE_SUPERADMIN'
+                        'ROLE_CUSTOMER_ADMIN' => 'ROLE_CUSTOMER_ADMIN',
+                        'ROLE_SUPERADMIN' => 'ROLE_SUPERADMIN',
                     ],
                     'expanded' => true,
                     'multiple' => true,

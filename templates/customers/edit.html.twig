@@ -1,0 +1,35 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title %}Edit Customer{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>
+        <a href="{{ path('customers_index') }}">Customers</a>
+    </li>
+    <li>
+        <a href="{{ path('customers_view', { customerId: customer.id }) }}">{{ customer.name }}</a>
+    </li>
+    <li class="is-active">
+        <a href="{{ path('customers_edit', { customerId: customer.id }) }}" aria-current="page">Edit</a>
+    </li>
+{% endblock %}
+
+{% block body %}
+    <div class="columns">
+        <div class="container">
+            <article class="panel has-background-white">
+                <p class="panel-heading">
+                    {{ customer.name }}
+                </p>
+                <div class="panel-block">
+                    <div class="column">
+                        {{ form(form) }}
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+{% endblock %}
+
+

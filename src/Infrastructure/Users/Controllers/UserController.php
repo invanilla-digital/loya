@@ -154,7 +154,7 @@ class UserController extends AbstractController
         if ($this->requests->getMasterRequest()->isXmlHttpRequest()) {
             return $this->json(
                 [
-                    'redirect_to' => $this->generateUrl('users_index')
+                    'redirect_to' => $this->generateUrl($route)
                 ]
             );
         }

@@ -28,6 +28,23 @@ users_delete:
   controller: App\Infrastructure\Users\Controllers\UserController::delete
   methods: POST|DELETE
 
+customers_index:
+  path: /customers
+  controller: App\Infrastructure\Customers\Controllers\CustomerController::index
+customers_create:
+  path: /customers/create
+  controller: App\Infrastructure\Customers\Controllers\CustomerController::create
+customers_view:
+  path: /customers/{customerId}
+  controller: App\Infrastructure\Customers\Controllers\CustomerController::view
+customers_edit:
+  path: /customers/{customerId}/edit
+  controller: App\Infrastructure\Customers\Controllers\CustomerController::edit
+customers_delete:
+  path: /customers/{customerId}/delete
+  controller: App\Infrastructure\Customers\Controllers\CustomerController::delete
+  methods: POST|DELETE
+
 campaigns_index:
   path: /campaigns
   controller: App\Infrastructure\Dashboard\Controllers\DashboardController::index

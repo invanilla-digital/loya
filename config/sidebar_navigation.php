@@ -34,6 +34,22 @@ return [
         ]
     ],
     [
+        'title' => 'Customers',
+        'roles' => [
+            'ROLE_CUSTOMER_ADMIN'
+        ],
+        'items' => [
+            [
+                'title' => 'All customers',
+                'route' => 'customers_index'
+            ],
+            [
+                'title' => 'Create new customer',
+                'route' => 'customers_create'
+            ],
+        ]
+    ],
+    [
         'title' => 'Users',
         'roles' => [
             'ROLE_USER_ADMIN'

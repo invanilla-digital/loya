@@ -21,14 +21,14 @@ trait HasTimestamps
      *
      * @ORM\Column(type="datetime_immutable", name="created_at", options={"default": "CURRENT_TIMESTAMP" })
      */
-    protected ?DateTimeInterface $createdAt;
+    protected ?DateTimeInterface $createdAt = null;
 
     /**
      * @var DateTimeInterface|null
      *
      * @ORM\Column(type="datetime_immutable", name="updated_at", nullable=true)
      */
-    protected ?DateTimeInterface $updatedAt;
+    protected ?DateTimeInterface $updatedAt = null;
 
     protected function setUpdatedAt(?DateTimeInterface $updatedAt): void
     {

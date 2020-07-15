@@ -1,0 +1,67 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title %}Customers{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li class="is-active">
+        <a href="{{ path('customers_index') }}" aria-current="page">Customers</a>
+    </li>
+{% endblock %}
+
+{% block body %}
+    <div class="columns">
+        <div class="container">
+            <article class="panel has-background-white">
+                <p class="panel-heading">
+                    Customers list
+                </p>
+                <div class="panel-block">
+                    <table class="table is-hoverable is-fullwidth">
+                        <thead>
+                        <tr>
+                            <th {% if pagination.isSorted('customer.name') %} class="sorted"{% endif %}>
+                                {{ knp_pagination_sortable(pagination, 'Name', 'customer.name') }}
+                            </th>
+                            <th {% if pagination.isSorted('customer.surname') %} class="sorted"{% endif %}>
+                                {{ knp_pagination_sortable(pagination, 'Surname', 'customer.surname') }}
+                            </th>
+                            <th>
+                                Actions
+                            </th>
+                        </tr>
+                        </thead>
+
+                        {% for customer in pagination %}
+                            <tr {% if loop.index is odd %}class="color"{% endif %}>
+                                <td> {{ customer.name }}</td>
+                                <td> {{ customer.surname }}</td>
+                                <td>
+                                    <a href="{{ path('customers_view', { customerId: customer.id}) }}"
+                                       class="button is-small">
+                                        View
+                                    </a>
+                                    <a href="{{ path('customers_edit', { customerId: customer.id}) }}"
+                                       class="button is-secondary is-small">
+                                        Edit
+                                    </a>
+                                    <button
+                                            data-post-button="{{ path('customers_delete', { customerId: customer.id }) }}"
+                                            data-post-button-confirmation="Do You really want to delete this Customer?"
+                                            class="button is-small is-danger"
+                                    >
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+
+                    <div class="navigation">
+                        {{ knp_pagination_render(pagination) }}
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+{% endblock %}

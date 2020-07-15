@@ -1,0 +1,32 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title %}Create Customer{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>
+        <a href="{{ path('customers_index') }}">Customers</a>
+    </li>
+    <li class="is-active">
+        <a href="{{ path('customers_create') }}" aria-current="page">Create</a>
+    </li>
+{% endblock %}
+
+{% block body %}
+    <div class="columns">
+        <div class="container">
+            <article class="panel has-background-white">
+                <p class="panel-heading">
+                    Create customer
+                </p>
+                <div class="panel-block">
+                    <div class="column">
+                        {{ form(form) }}
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+{% endblock %}
+
+

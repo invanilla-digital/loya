@@ -57,7 +57,7 @@ class Customer
      *
      * @ORM\Column(type="date_immutable")
      */
-    protected ?DateTimeInterface $dateOfBirth;
+    protected ?DateTimeInterface $dateOfBirth = null;
 
     /**
      * @var Collection

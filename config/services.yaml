@@ -28,3 +28,6 @@ services:
   App\Domain\Users\UserRepositoryInterface:
     class: App\Infrastructure\Users\Persistence\UserRepository
     autowire: true
+  App\Domain\Customers\CustomerRepositoryInterface:
+    class: App\Infrastructure\Customers\Persistence\CustomerRepository
+    autowire: true
