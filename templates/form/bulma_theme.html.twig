@@ -7,9 +7,40 @@
         <div class="control">
             {{ form_widget(form) }}
         </div>
-    </div>
 
-    <p class="is-danger">
         {{ form_errors(form) }}
-    </p>
+    </div>
 {% endblock %}
+
+{% block form_errors -%}
+    {%- if errors|length > 0 -%}
+        <span class="{% if form is not rootform %}invalid-feedback{% else %}help is-danger{% endif %} d-block">
+            {%- for error in errors -%}
+                <span class="d-block">
+                    <span class="form-error-icon badge badge-danger text-uppercase">{{ 'Error'|trans({}, 'validators') }}</span>
+                    <span class="form-error-message">{{ error.message }}</span>
+                </span>
+            {%- endfor -%}
+        </span>
+    {%- endif %}
+{%- endblock form_errors %}
+
+{% block form_label %}
+    {% if not compound %}
+        {% set label_attr = label_attr|merge({'for': id}) %}
+    {% endif %}
+    {% if required %}
+        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+    {% endif %}
+    {% if label is empty %}
+        {% set label = name|humanize %}
+    {% endif %}
+
+    <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+    {{ label|trans({}, translation_domain) }}
+    </label>
+
+    {% if attr.note is defined %}
+        <p class="help">{{ attr.note }}</p>
+    {% endif %}
+{% endblock form_label %}
