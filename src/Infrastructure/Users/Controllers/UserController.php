@@ -15,7 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * @IsGranted("ROLE_USER")
+ * @IsGranted("ROLE_USER_ADMIN")
  */
 class UserController extends AbstractController
 {
