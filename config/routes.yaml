@@ -17,6 +17,10 @@ users_index:
 users_create:
   path: /users/create
   controller: App\Infrastructure\Users\Controllers\UserController::create
+users_delete:
+  path: /users/{userId}/delete
+  controller: App\Infrastructure\Users\Controllers\UserController::delete
+  methods: POST|DELETE
 
 campaigns_index:
   path: /campaigns

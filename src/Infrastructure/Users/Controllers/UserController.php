@@ -12,7 +12,9 @@ use Knp\Component\Pager\PaginatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Security;
 
 /**
  * @IsGranted("ROLE_USER_ADMIN")
@@ -22,15 +24,21 @@ class UserController extends AbstractController
     protected PaginatorInterface $paginator;
     protected UserRepositoryInterface $users;
     private UserRegistrationServiceInterface $userRegistration;
+    private Security $security;
+    private RequestStack $requests;
 
     public function __construct(
         PaginatorInterface $paginator,
         UserRepositoryInterface $users,
-        UserRegistrationServiceInterface $userRegistration
+        UserRegistrationServiceInterface $userRegistration,
+        Security $security,
+        RequestStack $request
     ) {
         $this->paginator = $paginator;
         $this->users = $users;
         $this->userRegistration = $userRegistration;
+        $this->security = $security;
+        $this->requests = $request;
     }
 
     public function index(Request $request): Response
@@ -65,5 +73,42 @@ class UserController extends AbstractController
                 'form' => $form->createView()
             ]
         );
+    }
+
+    public function delete(int $userId): Response
+    {
+        $user = $this->users->findById($userId);
+        $currentUser = $this->security->getUser();
+
+        if (!$user) {
+            $this->addFlash('danger', 'Can\'t delete a user that doesn\'t exist');
+
+            return $this->redirectOrJson('users_index');
+        }
+
+        if ($currentUser && ($currentUser->getUsername() === $user->getUserName())) {
+            $this->addFlash('danger', 'Can\'t delete Yourself from system');
+
+            return $this->redirectOrJson('users_index');
+        }
+
+        $this->users->delete($user);
+
+        $this->addFlash('success', 'User deleted successfully');
+
+        return $this->redirectOrJson('users_index');
+    }
+
+    protected function redirectOrJson($route)
+    {
+        if ($this->requests->getMasterRequest()->isXmlHttpRequest()) {
+            return $this->json(
+                [
+                    'redirect_to' => $this->generateUrl('users_index')
+                ]
+            );
+        }
+
+        return $this->redirectToRoute($route);
     }
 }

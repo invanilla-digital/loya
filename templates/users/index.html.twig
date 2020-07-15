@@ -10,14 +10,17 @@
 {% endblock %}
 
 {% block body %}
-    <table class="table is-hoverable">
+    <table class="table is-hoverable is-fullwidth">
         <thead>
         <tr>
             <th {% if pagination.isSorted('user.username') %} class="sorted"{% endif %}>
-                {{ knp_pagination_sortable(pagination, 'username', 'user.username') }}
+                {{ knp_pagination_sortable(pagination, 'Username', 'user.username') }}
             </th>
             <th>
                 Roles
+            </th>
+            <th>
+                Actions
             </th>
         </tr>
         </thead>
@@ -26,6 +29,24 @@
             <tr {% if loop.index is odd %}class="color"{% endif %}>
                 <td> {{ user.username }}</td>
                 <td> {{ user.roles | join(', ') }}</td>
+                <td>
+                    <a href="#" class="button is-small">
+                        View
+                    </a>
+                    {% if app.user.username is not same as(user.username) %}
+                        <button
+                                data-post-button="{{ path('users_delete', { userId: user.id }) }}"
+                                data-post-button-confirmation="Do You really want to delete this User?"
+                                class="button is-small is-danger"
+                        >
+                            Delete
+                        </button>
+                    {% else %}
+                        <button disabled class="button is-danger is-small">
+                            Delete
+                        </button>
+                    {% endif %}
+                </td>
             </tr>
         {% endfor %}
     </table>
