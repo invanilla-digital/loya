@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Customers;
 
+use App\Domain\Common\Traits\CanBeBlamed;
 use App\Domain\Common\Traits\HasTimestamps;
 use App\Domain\Common\Traits\HasUuid;
 use DateTimeInterface;
@@ -18,6 +19,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Customer
 {
+    use CanBeBlamed;
     use HasUuid;
     use HasTimestamps;
 

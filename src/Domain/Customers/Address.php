@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Domain\Customers;
 
+use App\Domain\Common\Traits\CanBeBlamed;
 use App\Domain\Common\Traits\HasTimestamps;
 use App\Domain\Common\Traits\HasUuid;
 use App\Domain\Customers\Traits\HasCustomer;
@@ -20,6 +21,7 @@ class Address implements AddressInterface
     use HasUuid;
     use HasTimestamps;
     use HasCustomer;
+    use CanBeBlamed;
 
     /**
      * @var string|null
