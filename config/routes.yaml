@@ -14,6 +14,9 @@ app_logout:
 users_index:
   path: /users
   controller: App\Infrastructure\Users\Controllers\UserController::index
+users_create:
+  path: /users/create
+  controller: App\Infrastructure\Users\Controllers\UserController::create
 
 campaigns_index:
   path: /campaigns

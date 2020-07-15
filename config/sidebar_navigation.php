@@ -45,7 +45,7 @@ return [
             ],
             [
                 'title' => 'Create new user',
-                'route' => 'users_index'
+                'route' => 'users_create'
             ],
         ]
     ]

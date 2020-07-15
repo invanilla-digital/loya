@@ -1,0 +1,19 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title %}Create User{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>
+        <a href="{{ path('users_index') }}">Users</a>
+    </li>
+    <li class="is-active">
+        <a href="{{ path('users_create') }}" aria-current="page">Create</a>
+    </li>
+{% endblock %}
+
+{% block body %}
+    {{ form(form) }}
+{% endblock %}
+
+
