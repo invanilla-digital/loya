@@ -32,5 +32,21 @@ return [
                 'route' => 'campaigns_index'
             ],
         ]
+    ],
+    [
+        'title' => 'Users',
+        'roles' => [
+            'ROLE_USER_ADMINISTRATOR'
+        ],
+        'items' => [
+            [
+                'title' => 'All users',
+                'route' => 'users_index'
+            ],
+            [
+                'title' => 'Create new user',
+                'route' => 'users_index'
+            ],
+        ]
     ]
 ];

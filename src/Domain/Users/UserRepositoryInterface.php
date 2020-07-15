@@ -7,4 +7,6 @@ namespace App\Domain\Users;
 interface UserRepositoryInterface
 {
     public function findAllActiveUsers(): iterable;
+
+    public function getAllUsersQuery();
 }
