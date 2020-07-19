@@ -11,31 +11,41 @@ use App\Domain\Navigation\RouteAwareInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Contracts\Cache\CacheInterface;
+use Symfony\Contracts\Cache\ItemInterface;
 
 class NavigationService implements NavigationServiceInterface
 {
-    protected const MENU_SECTIONS_CONFIG_KEY = 'services.navigation';
-
     protected ContainerBagInterface $params;
     protected NavigationFactoryInterface $factory;
     protected Security $security;
     protected RequestStack $requests;
+    private CacheInterface $cache;
 
     public function __construct(
         ContainerBagInterface $params,
         NavigationFactoryInterface $factory,
         Security $security,
-        RequestStack $requests
+        RequestStack $requests,
+        CacheInterface $cache
     ) {
         $this->params = $params;
         $this->factory = $factory;
         $this->security = $security;
         $this->requests = $requests;
+        $this->cache = $cache;
     }
 
     public function getSidebarSections(): array
     {
-        return $this->factory->make(require __DIR__ . '/../../../../config/sidebar_navigation.php');
+        return $this->cache->get(
+            'navigation_sidebar',
+            function (ItemInterface $item) {
+                $item->expiresAfter(1000);
+
+                return $this->factory->make(require __DIR__ . '/../../../../config/sidebar_navigation.php');
+            }
+        );
     }
 
     public function isItemAccessible(RoleBasedAccessibilityInterface $item): bool
@@ -61,7 +71,14 @@ class NavigationService implements NavigationServiceInterface
 
     public function getTopNavigationSections(): array
     {
-        return $this->factory->make(require __DIR__ . '/../../../../config/top_navigation.php');
+        return $this->cache->get(
+            'navigation_top',
+            function (ItemInterface $item) {
+                $item->expiresAfter(1000);
+
+                return $this->factory->make(require __DIR__ . '/../../../../config/top_navigation.php');
+            }
+        );
     }
 
     public function isItemActive(RouteAwareInterface $item): bool

@@ -46,3 +46,9 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Domain/Customers'
                 prefix: 'App\Domain\Customers'
                 alias: Customers
+            Campaigns:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/src/Domain/Campaigns'
+                prefix: 'App\Domain\Campaigns'
+                alias: Campaigns

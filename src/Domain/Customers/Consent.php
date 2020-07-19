@@ -40,4 +40,11 @@ class Consent
      * @ORM\Column(type="date_immutable", name="expiry_date")
      */
     protected ?DateTimeInterface $expires;
+
+    /**
+     * @var Customer|null
+     *
+     * @ORM\ManyToOne(targetEntity="\App\Domain\Customers\Customer", inversedBy="consents")
+     */
+    protected ?Customer $customer;
 }

@@ -115,6 +115,13 @@ class Address implements AddressInterface
     protected ?string $locale;
 
     /**
+     * @var Customer|null
+     *
+     * @ORM\ManyToOne(targetEntity="\App\Domain\Customers\Customer", inversedBy="addresses")
+     */
+    protected ?Customer $customer;
+
+    /**
      * @param string|null $countryCode
      * @return Address
      */
