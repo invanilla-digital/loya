@@ -1,0 +1,71 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title %}Campaigns{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li class="is-active">
+        <a href="{{ path('campaigns_index') }}" aria-current="page">Campaigns</a>
+    </li>
+{% endblock %}
+
+{% block body %}
+    <div class="columns">
+        <div class="container">
+            <article class="panel has-background-white">
+                <p class="panel-heading">
+                    Campaigns list
+                </p>
+                <div class="panel-block">
+                    <table class="table is-hoverable is-fullwidth">
+                        <thead>
+                        <tr>
+                            <th {% if pagination.isSorted('campaign.title') %} class="sorted"{% endif %}>
+                                {{ knp_pagination_sortable(pagination, 'Title', 'campaign.title') }}
+                            </th>
+                            <th {% if pagination.isSorted('campaign.startDate') %} class="sorted"{% endif %}>
+                                {{ knp_pagination_sortable(pagination, 'Start Date', 'campaign.startDate') }}
+                            </th>
+                            <th {% if pagination.isSorted('campaign.endDate') %} class="sorted"{% endif %}>
+                                {{ knp_pagination_sortable(pagination, 'End Date', 'campaign.endDate') }}
+                            </th>
+                            <th>
+                                Actions
+                            </th>
+                        </tr>
+                        </thead>
+
+                        {% for campaign in pagination %}
+                            <tr {% if loop.index is odd %}class="color"{% endif %}>
+                                <td> {{ campaign.title }}</td>
+                                <td> {{ campaign.startDate|date }}</td>
+                                <td> {{ campaign.endDate|date }}</td>
+                                <td>
+                                    <a href="{{ path('campaigns_view', { campaignId: campaign.id }) }}"
+                                       class="button is-small">
+                                        View
+                                    </a>
+                                    <a href="{{ path('campaigns_edit', { campaignId: campaign.id }) }}"
+                                       class="button is-secondary is-small">
+                                        Edit
+                                    </a>
+                                    <button
+                                            data-post-button="{{ path('campaigns_delete', { campaignId: campaign.id }) }}"
+                                            data-post-button-confirmation="Do You really want to delete this Campaign?"
+                                            class="button is-small is-danger"
+                                    >
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+
+                    <div class="navigation">
+                        {{ knp_pagination_render(pagination) }}
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+{% endblock %}

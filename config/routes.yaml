@@ -47,5 +47,17 @@ customers_delete:
 
 campaigns_index:
   path: /campaigns
-  controller: App\Infrastructure\Dashboard\Controllers\DashboardController::index
-
+  controller: App\Infrastructure\Campaigns\Controllers\CampaignController::index
+campaigns_create:
+  path: /campaigns/create
+  controller: App\Infrastructure\Campaigns\Controllers\CampaignController::create
+campaigns_view:
+  path: /campaigns/{campaignId}
+  controller: App\Infrastructure\Campaigns\Controllers\CampaignController::view
+campaigns_edit:
+  path: /campaigns/{campaignId}/edit
+  controller: App\Infrastructure\Campaigns\Controllers\CampaignController::edit
+campaigns_delete:
+  path: /campaigns/{campaignId}/delete
+  controller: App\Infrastructure\Campaigns\Controllers\CampaignController::delete
+  methods: POST|DELETE

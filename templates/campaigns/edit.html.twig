@@ -1,0 +1,35 @@
+{% extends 'layouts/base.html.twig' %}
+
+{% block title %}Edit Campaign{% endblock %}
+
+{% block breadcrumb %}
+    {{ parent() }}
+    <li>
+        <a href="{{ path('campaigns_index') }}">Campaigns</a>
+    </li>
+    <li>
+        <a href="{{ path('campaigns_view', { campaignId: campaign.id }) }}">{{ campaign.title }}</a>
+    </li>
+    <li class="is-active">
+        <a href="{{ path('campaigns_edit', { campaignId: campaign.id }) }}" aria-current="page">Edit</a>
+    </li>
+{% endblock %}
+
+{% block body %}
+    <div class="columns">
+        <div class="container">
+            <article class="panel has-background-white">
+                <p class="panel-heading">
+                    {{ campaign.title }}
+                </p>
+                <div class="panel-block">
+                    <div class="column">
+                        {{ form(form) }}
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+{% endblock %}
+
+

@@ -25,7 +25,7 @@ return [
             ],
             [
                 'title' => 'Create new',
-                'route' => 'campaigns_index'
+                'route' => 'campaigns_create'
             ],
             [
                 'title' => 'Reports',

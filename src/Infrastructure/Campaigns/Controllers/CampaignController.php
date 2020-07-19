@@ -2,29 +2,29 @@
 
 declare(strict_types=1);
 
-namespace App\Infrastructure\Customers\Controllers;
+namespace App\Infrastructure\Campaigns\Controllers;
 
-use App\Domain\Customers\Customer;
-use App\Domain\Customers\CustomerRepositoryInterface;
-use App\Infrastructure\Customers\Forms\CustomerForm;
+use App\Domain\Campaigns\Campaign;
+use App\Domain\Campaigns\CampaignRepositoryInterface;
+use App\Infrastructure\Campaigns\Forms\CampaignForm;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 
-class CustomerController extends AbstractController
+class CampaignController extends AbstractController
 {
-    private CustomerRepositoryInterface $customers;
+    private CampaignRepositoryInterface $campaigns;
     private PaginatorInterface $paginator;
     private RequestStack $requests;
 
     public function __construct(
-        CustomerRepositoryInterface $customers,
+        CampaignRepositoryInterface $campaigns,
         PaginatorInterface $paginator,
         RequestStack $requests
     ) {
-        $this->customers = $customers;
+        $this->campaigns = $campaigns;
         $this->paginator = $paginator;
         $this->requests = $requests;
     }
@@ -32,10 +32,10 @@ class CustomerController extends AbstractController
     public function index(Request $request): Response
     {
         return $this->render(
-            'customers/index.html.twig',
+            'campaigns/index.html.twig',
             [
                 'pagination' => $this->paginator->paginate(
-                    $this->customers->getFindAllCustomersQuery(),
+                    $this->campaigns->getFindAllCampaignsQuery(),
                     $request->query->getInt('page', 1),
                     10
                 )
@@ -46,8 +46,8 @@ class CustomerController extends AbstractController
     public function create(Request $request): Response
     {
         $form = $this->createForm(
-            CustomerForm::class,
-            new Customer,
+            CampaignForm::class,
+            new Campaign,
             [
                 'submit_button' => 'create'
             ]
@@ -56,46 +56,46 @@ class CustomerController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->customers->create($form->getData());
+            $this->campaigns->create($form->getData());
 
-            return $this->redirectToRoute('customers_index');
+            return $this->redirectToRoute('campaigns_index');
         }
 
         return $this->render(
-            'customers/create.html.twig',
+            'campaigns/create.html.twig',
             [
                 'form' => $form->createView()
             ]
         );
     }
 
-    public function view(string $customerId): Response
+    public function view(string $campaignId): Response
     {
-        $customer = $this->customers->findById($customerId);
+        $campaign = $this->campaigns->findById($campaignId);
 
-        if (!$customer) {
-            throw $this->createNotFoundException('This customer does not exist');
+        if (!$campaign) {
+            throw $this->createNotFoundException('This campaign does not exist');
         }
 
         return $this->render(
-            'customers/view.html.twig',
+            'campaigns/view.html.twig',
             [
-                'customer' => $customer
+                'campaign' => $campaign
             ]
         );
     }
 
-    public function edit(string $customerId, Request $request): Response
+    public function edit(string $campaignId, Request $request): Response
     {
-        $customer = $this->customers->findById($customerId);
+        $campaign = $this->campaigns->findById($campaignId);
 
-        if (!$customer) {
-            throw $this->createNotFoundException('This customer does not exist');
+        if (!$campaign) {
+            throw $this->createNotFoundException('This campaign does not exist');
         }
 
         $form = $this->createForm(
-            CustomerForm::class,
-            $customer,
+            CampaignForm::class,
+            $campaign,
             [
                 'submit_button' => 'edit'
             ]
@@ -104,42 +104,42 @@ class CustomerController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->customers->update($form->getData());
+            $this->campaigns->update($form->getData());
 
-            $this->addFlash('success', 'Customer edited successfully');
+            $this->addFlash('success', 'Campaign edited successfully');
 
             return $this->redirectToRoute(
-                'customers_view',
+                'campaigns_view',
                 [
-                    'customerId' => $customerId
+                    'campaignId' => $campaignId
                 ]
             );
         }
 
         return $this->render(
-            'customers/edit.html.twig',
+            'campaigns/edit.html.twig',
             [
-                'customer' => $customer,
+                'campaign' => $campaign,
                 'form' => $form->createView()
             ]
         );
     }
 
-    public function delete(string $customerId): Response
+    public function delete(string $campaignId): Response
     {
-        $customer = $this->customers->findById($customerId);
+        $campaign = $this->campaigns->findById($campaignId);
 
-        if (!$customer) {
-            $this->addFlash('danger', 'Can\'t delete a customer that doesn\'t exist');
+        if (!$campaign) {
+            $this->addFlash('danger', 'Can\'t delete a campaign that doesn\'t exist');
 
-            return $this->redirectOrJson('customers_index');
+            return $this->redirectOrJson('campaigns_index');
         }
 
-        $this->customers->delete($customer);
+        $this->campaigns->delete($campaign);
 
-        $this->addFlash('success', 'Customer deleted successfully');
+        $this->addFlash('success', 'Campaign deleted successfully');
 
-        return $this->redirectOrJson('customers_index');
+        return $this->redirectOrJson('campaigns_index');
     }
 
     protected function redirectOrJson($route)
