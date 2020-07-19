@@ -12,7 +12,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
+/**
+ * Class CampaignController
+ * @package App\Infrastructure\Campaigns\Controllers
+ * @IsGranted("ROLE_CAMPAIGN_ADMIN")
+ */
 class CampaignController extends AbstractController
 {
     private CampaignRepositoryInterface $campaigns;

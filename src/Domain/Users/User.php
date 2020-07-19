@@ -4,6 +4,7 @@ namespace App\Domain\Users;
 
 use App\Domain\Common\Traits\CanBeBlamed;
 use App\Domain\Common\Traits\HasTimestamps;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -49,6 +50,12 @@ class User implements UserInterface
      * @Assert\Length(groups={"registration"}, min="6")
      */
     private ?string $plainPassword = null;
+
+    /**
+     * @var Collection
+     * @ORM\ManyToOne(targetEntity="App\Domain\Actions\ActionRequest", inversedBy="executors")
+     */
+    private Collection $actionRequests;
 
     public function getId(): ?int
     {

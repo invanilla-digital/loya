@@ -16,7 +16,7 @@ return [
     [
         'title' => 'Campaigns',
         'roles' => [
-            'ROLE_USER'
+            'ROLE_CAMPAIGN_ADMIN'
         ],
         'items' => [
             [

@@ -8,11 +8,17 @@ use App\Domain\Customers\Customer;
 use App\Domain\Customers\CustomerRepositoryInterface;
 use App\Infrastructure\Customers\Forms\CustomerForm;
 use Knp\Component\Pager\PaginatorInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Class CustomerController
+ * @package App\Infrastructure\Customers\Controllers
+ * @IsGranted("ROLE_CUSTOMER_ADMIN")
+ */
 class CustomerController extends AbstractController
 {
     private CustomerRepositoryInterface $customers;

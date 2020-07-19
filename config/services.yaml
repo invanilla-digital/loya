@@ -37,3 +37,6 @@ services:
   App\Domain\Campaigns\CampaignEntryRepositoryInterface:
     class: App\Infrastructure\Campaigns\Persistence\CampaignEntryRepository
     autowire: true
+  App\Domain\Actions\ActionRequestRepositoryInterface:
+    class: App\Infrastructure\Actions\Persistence\ActionRequestRepository
+    autowire: true

@@ -1,0 +1,1 @@
+**Certificates in this directory must not be used in production environment, they are only used for development purposes or as a fallback when system is not configured properly. Under no circumstances they are suitable for production use. Override your environment variables OAUTH2_PRIVATE_KEY and OAUTH2_PUBLIC_KEY to the right path.**
