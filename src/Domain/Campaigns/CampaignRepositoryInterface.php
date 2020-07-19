@@ -6,6 +6,8 @@ namespace App\Domain\Campaigns;
 
 interface CampaignRepositoryInterface
 {
+    public function getTotalCount(): int;
+
     public function findAllCampaigns(): array;
 
     public function getFindAllCampaignsQuery();

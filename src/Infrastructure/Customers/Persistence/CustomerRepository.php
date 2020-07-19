@@ -56,4 +56,9 @@ class CustomerRepository extends ServiceEntityRepository implements CustomerRepo
         $entities->persist($customer);
         $entities->flush($customer);
     }
+
+    public function getTotalCount(): int
+    {
+        return $this->count([]);
+    }
 }

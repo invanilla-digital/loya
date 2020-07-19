@@ -65,4 +65,9 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     {
         $this->getEntityManager()->flush($user);
     }
+
+    public function getTotalCount(): int
+    {
+        return $this->count([]);
+    }
 }

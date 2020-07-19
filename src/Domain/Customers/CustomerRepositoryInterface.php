@@ -6,6 +6,8 @@ namespace App\Domain\Customers;
 
 interface CustomerRepositoryInterface
 {
+    public function getTotalCount(): int;
+
     public function findAllCustomers(): array;
 
     public function getFindAllCustomersQuery();

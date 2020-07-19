@@ -56,4 +56,9 @@ class CampaignRepository extends ServiceEntityRepository implements CampaignRepo
         $entities->persist($campaign);
         $entities->flush($campaign);
     }
+
+    public function getTotalCount(): int
+    {
+        return $this->count([]);
+    }
 }

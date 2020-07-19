@@ -31,3 +31,9 @@ services:
   App\Domain\Customers\CustomerRepositoryInterface:
     class: App\Infrastructure\Customers\Persistence\CustomerRepository
     autowire: true
+  \App\Domain\Campaigns\CampaignRepositoryInterface:
+    class: App\Infrastructure\Campaigns\Persistence\CampaignRepository
+    autowire: true
+  App\Domain\Campaigns\CampaignEntryRepositoryInterface:
+    class: App\Infrastructure\Campaigns\Persistence\CampaignEntryRepository
+    autowire: true

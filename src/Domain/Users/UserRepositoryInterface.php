@@ -6,6 +6,8 @@ namespace App\Domain\Users;
 
 interface UserRepositoryInterface
 {
+    public function getTotalCount(): int;
+
     public function findById(int $id): ?User;
 
     public function findAllActiveUsers(): iterable;

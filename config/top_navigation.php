@@ -17,7 +17,7 @@ return [
             ],
             [
                 'title' => 'Customers',
-                'route' => 'app_dashboard'
+                'route' => 'customers_index'
             ],
             [
                 'title' => 'Settings',
